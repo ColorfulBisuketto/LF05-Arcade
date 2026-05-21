@@ -2,6 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { LoginService } from '../services/login.service';
+import { GameStoreService } from '../services/game-store.service';
 
 @Component({
   selector: 'app-clicker',
@@ -62,6 +63,7 @@ import { LoginService } from '../services/login.service';
 export class ClickerComponent {
   private loginService = inject(LoginService);
   private router = inject(Router);
+  private gameService = inject(GameStoreService);
 
   score = signal(0);
 
@@ -77,15 +79,7 @@ export class ClickerComponent {
   }
 
   submitScore(): void {
-    const payload = {
-      username: this.username(),
-      score: this.score()
-    };
-
-    console.log('Submitting score:', payload);
-
-    // TODO: GameService.submitScore(payload)
-
+    this.gameService.submitScore(this.score());
     this.router.navigate(['/']);
   }
 }

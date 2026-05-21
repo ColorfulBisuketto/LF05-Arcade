@@ -48,6 +48,13 @@ import { LoginService } from '../services/login.service';
           >
             Submit
           </button>
+          <button
+          (click)="logout()"
+            type="button"
+            class="app-button app-button-secondary"
+          >
+            Log out
+          </button>
         </div>
 
       </form>
@@ -64,6 +71,9 @@ export class LoginComponent {
 
   submitting = signal(false);
 
+  logout(){
+    this.loginService.unsetUser();
+  }
   async submit(): Promise<void> {
     if (this.submitting()) return;
 

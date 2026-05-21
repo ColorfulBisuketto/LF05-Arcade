@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal, computed, inject } from '@angular/core';
 import { TableModule } from 'primeng/table';
+import { GameStoreService } from '../services/game-store.service';
 
 export interface ScoreEntry {
   username: string;
@@ -24,30 +25,30 @@ export interface ScoreEntry {
         <div class="app-card-content">
 
           <!-- TOP 3 -->
-          @if (top3().length) {
+          @if (gameService.top3().length) {
             <div class="top3">
 
-            @if(top3()[1]){
+            @if(gameService.top3()[1]){
               <div class="top-item second">
                 <div class="rank">2</div>
-                <div class="name">{{ top3()[1].username }}</div>
-                <div class="score">{{ top3()[1].score }}</div>
+                <div class="name">{{ gameService.top3()[1].username }}</div>
+                <div class="score">{{ gameService.top3()[1].score }}</div>
               </div>
             }
 
-            @if(top3()[0]){
+            @if(gameService.top3()[0]){
               <div class="top-item first">
                 <div class="rank">1</div>
-                <div class="name">{{ top3()[0].username }}</div>
-                <div class="score">{{ top3()[0].score }}</div>
+                <div class="name">{{ gameService.top3()[0].username }}</div>
+                <div class="score">{{ gameService.top3()[0].score }}</div>
               </div>
             }
 
-            @if(top3()[2]){
+            @if(gameService.top3()[2]){
               <div class="top-item third">
                 <div class="rank">3</div>
-                <div class="name">{{ top3()[2].username }}</div>
-                <div class="score">{{ top3()[2].score }}</div>
+                <div class="name">{{ gameService.top3()[2].username }}</div>
+                <div class="score">{{ gameService.top3()[2].score }}</div>
               </div>
             }
             </div>
@@ -55,7 +56,7 @@ export interface ScoreEntry {
 
           <!-- TABLE -->
           <p-table
-            [value]="scores()"
+            [value]="gameService.leaderboard()"
             [paginator]="true"
             [rows]="5"
           >
@@ -88,19 +89,10 @@ export interface ScoreEntry {
   styleUrl: './leaderboard.scss',
 })
 export class LeaderboardComponent {
-
-  scores = signal<ScoreEntry[]>([
-    { username: 'Alice', score: 120, timestamp: Date.now() },
-    { username: 'Bob', score: 90, timestamp: Date.now() },
-    { username: 'Charlie', score: 70, timestamp: Date.now() },
-    { username: 'Dave', score: 40, timestamp: Date.now() },
-  ]);
-
-  top3 = computed(() =>
-    [...this.scores()]
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 3)
-  );
+  protected gameService = inject(GameStoreService);
+  constructor(){
+    this.gameService.loadLeaderboard();
+  }
 
   format(ts: number): string {
     return new Date(ts).toLocaleString();
