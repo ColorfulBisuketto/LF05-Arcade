@@ -1,0 +1,17 @@
+:root {
+  --app-bg: var(--bg);
+
+  --card-bg: var(--surface);
+  --card-border: var(--border);
+
+  --sidebar-bg: var(--surface);
+  --sidebar-border: var(--border);
+
+  --input-bg: var(--surface-elevated);
+  --input-border: var(--border);
+
+  --dialog-bg: var(--surface);
+
+  --table-header-bg: var(--surface-elevated);
+  --table-row-hover: var(--surface-hover);
+}

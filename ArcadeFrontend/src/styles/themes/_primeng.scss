@@ -1,0 +1,107 @@
+/* ==========================================================================
+   PRIMENG TOKEN MAPPING
+   ========================================================================== */
+
+:root {
+  --p-primary-color: var(--primary);
+  --p-primary-hover-color: var(--primary-hover);
+
+  --p-text-color: var(--text-primary);
+  --p-text-muted-color: var(--text-secondary);
+
+  --p-content-background: var(--surface);
+  --p-content-border-color: var(--border);
+
+  --p-surface-0: var(--bg);
+  --p-surface-50: var(--surface);
+  --p-surface-100: var(--surface-elevated);
+
+  --p-focus-ring-color: var(--focus-ring);
+
+  --p-border-radius: var(--radius-md);
+}
+
+/* ==========================================================================
+   COMPONENT OVERRIDES
+   ========================================================================== */
+
+.p-card,
+.p-panel,
+.p-dialog,
+.p-overlaypanel,
+.p-menu,
+.p-tieredmenu {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+.p-dialog-mask {
+  backdrop-filter: blur(10px);
+}
+
+.p-inputtext,
+.p-inputtextarea,
+.p-select,
+.p-dropdown {
+  background: var(--input-bg);
+  border-color: var(--input-border);
+  color: var(--text-primary);
+
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+
+  &:enabled:hover {
+    border-color: var(--primary);
+  }
+
+  &:enabled:focus,
+  &.p-focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--focus-ring);
+  }
+}
+
+.p-button {
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-semibold);
+
+  transition:
+    transform var(--transition-fast),
+    filter var(--transition-fast);
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.p-button-primary {
+  background: var(--gradient-primary);
+  border: none;
+}
+
+.p-datatable {
+  .p-datatable-header,
+  .p-datatable-footer {
+    background: var(--surface);
+    border-color: var(--border);
+  }
+
+  .p-datatable-thead > tr > th {
+    background: var(--table-header-bg);
+    border-color: var(--border);
+  }
+
+  .p-datatable-tbody > tr {
+    background: var(--surface);
+
+    &:hover {
+      background: var(--table-row-hover);
+    }
+
+    > td {
+      border-color: var(--border);
+    }
+  }
+}

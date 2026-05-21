@@ -1,0 +1,28 @@
+:root {
+  /* Base */
+  --z-base: 1;
+
+  /* Sticky content */
+  --z-sticky: 100;
+
+  /* Navigation */
+  --z-header: 200;
+  --z-sidebar: 300;
+  --z-drawer: 400;
+
+  /* Floating UI */
+  --z-dropdown: 1000;
+  --z-overlay: 1100;
+  --z-popover: 1200;
+  --z-tooltip: 1300;
+
+  /* Modals */
+  --z-dialog-backdrop: 1400;
+  --z-dialog: 1500;
+
+  /* Notifications */
+  --z-toast: 1600;
+
+  /* Critical */
+  --z-max: 9999;
+}

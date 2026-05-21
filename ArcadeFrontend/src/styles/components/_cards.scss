@@ -1,0 +1,60 @@
+.app-card {
+  background: var(--card-bg);
+
+  border: 1px solid var(--card-border);
+
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-sm);
+
+  overflow: hidden;
+}
+
+.app-card-elevated {
+  box-shadow: var(--shadow-md);
+}
+
+.app-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: var(--space-5);
+
+  border-bottom: 1px solid var(--divider);
+}
+
+.app-card-title {
+  margin: 0;
+
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.app-card-subtitle {
+  margin-top: var(--space-1);
+
+  color: var(--text-secondary);
+
+  font-size: var(--font-size-sm);
+}
+
+.app-card-content {
+  padding: var(--space-5);
+}
+
+.app-card-footer {
+  padding: var(--space-5);
+
+  border-top: 1px solid var(--divider);
+}
+
+.app-glass-card {
+  background: rgba(255, 255, 255, 0.04);
+
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: var(--shadow-md);
+}
