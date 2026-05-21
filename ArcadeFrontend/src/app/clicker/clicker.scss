@@ -1,0 +1,38 @@
+.clicker-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 100dvh;
+
+  padding: var(--content-padding);
+
+  background: var(--bg);
+}
+
+.clicker-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.score-block {
+  display: flex;
+  justify-content: space-between;
+
+  padding: var(--space-3) 0;
+
+  border-bottom: 1px solid var(--divider);
+}
+
+.score-block .label {
+  color: var(--text-secondary);
+}
+
+.score-block .value {
+  font-weight: var(--font-weight-semibold);
+}
+
+.score {
+  color: var(--primary);
+  font-size: var(--font-size-lg);
+}

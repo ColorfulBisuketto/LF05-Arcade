@@ -1,34 +1,71 @@
 import { Component, inject } from '@angular/core';
-import { ThemeService } from '../services/theme.service';
-import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from "@angular/router";
-import { LoginService } from '../services/login.service';
 
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
+
+import { ThemeService } from '../services/theme.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [ToggleSwitchModule, FormsModule, RouterLink],
   standalone: true,
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    FormsModule,
+    ToggleSwitchModule
+  ],
   template: `
-  <span>Toggle dark mode
-    <p-toggleswitch
-      [ngModel]="themeService.theme() === 'dark'"
-      (ngModelChange)="themeService.toggle()">
-    </p-toggleswitch>
-  </span>
-  <nav>
-    <a routerLink="/">Home</a>
-    <a routerLink="/login">Login</a>
-    <a routerLink="/clicker">Play Clicker</a>
-  </nav>
-  <p>{{loginService.isUserSet() ? loginService.userName() : "Username not set please log in."}}</p>
+    <header class="app-navbar">
+
+      <!-- LEFT: Brand + Navigation -->
+      <div class="nav-left">
+        <a routerLink="/" class="brand">
+          PurpleApp
+        </a>
+
+        <nav class="nav-links">
+          <a routerLink="/" routerLinkActive="active">
+            Home
+          </a>
+
+          <a routerLink="/clicker" routerLinkActive="active">
+            Clicker
+          </a>
+
+          <a routerLink="/login" routerLinkActive="active">
+            Login
+          </a>
+        </nav>
+      </div>
+
+      <!-- RIGHT: Actions -->
+      <div class="nav-right">
+
+        <!-- Theme toggle -->
+        <button class="nav-action theme-toggle" type="button">
+          <span class="label">Dark</span>
+
+          <p-toggleswitch
+            [ngModel]="themeService.theme() === 'dark'"
+            (ngModelChange)="themeService.toggle()"
+          />
+        </button>
+
+        <a routerLink="/login" routerLinkActive="active" class="nav-action user-button">
+          {{
+            loginService.isUserSet()
+              ? loginService.userName()
+              : 'Not logged in'
+          }}
+        </a>
+      </div>
+    </header>
   `,
   styleUrl: './navbar.scss',
 })
 export class NavbarComponent {
-    readonly themeService = inject(ThemeService);
-    readonly loginService = inject(LoginService);
-
-    darkMode: boolean = false;
+  readonly themeService = inject(ThemeService);
+  readonly loginService = inject(LoginService);
 }

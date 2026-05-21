@@ -1,0 +1,107 @@
+.leaderboard-page {
+  display: flex;
+  justify-content: center;
+
+  min-height: 100dvh;
+
+  padding: var(--content-padding);
+
+  background: var(--bg);
+}
+
+.leaderboard-card {
+  width: 100%;
+  max-width: 800px;
+
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+
+/* ==========================================================================
+   TOP 3 (SMALLER, INLINE STRIP)
+   ========================================================================== */
+
+.top3 {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  gap: var(--space-4);
+
+  margin-bottom: var(--space-5);
+}
+
+.top-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 120px;
+
+  padding: var(--space-3);
+
+  border-radius: var(--radius-md);
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  box-shadow: var(--shadow-sm);
+
+  font-size: var(--font-size-sm);
+}
+
+.top-item .rank {
+  font-weight: var(--font-weight-bold);
+}
+
+.top-item .name {
+  margin-top: var(--space-1);
+  font-weight: var(--font-weight-semibold);
+}
+
+.top-item .score {
+  margin-top: var(--space-1);
+  color: var(--primary);
+  font-weight: var(--font-weight-bold);
+}
+
+/* highlight 1st */
+.first {
+  transform: translateY(-4px);
+  box-shadow: var(--glow-primary);
+}
+
+/* subtle rank colors */
+.first .rank { color: gold; }
+.second .rank { color: silver; }
+.third .rank { color: #cd7f32; }
+
+/* ==========================================================================
+   PRIME TABLE OVERRIDES
+   ========================================================================== */
+
+:host ::ng-deep .p-datatable {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+:host ::ng-deep .p-datatable-thead > tr > th {
+  background: var(--surface-elevated);
+  border-color: var(--border);
+  color: var(--text-secondary);
+}
+
+:host ::ng-deep .p-datatable-tbody > tr {
+  background: var(--surface);
+}
+
+:host ::ng-deep .p-datatable-tbody > tr:hover {
+  background: var(--surface-hover);
+}
+
+.score {
+  font-weight: var(--font-weight-semibold);
+  color: var(--primary);
+}

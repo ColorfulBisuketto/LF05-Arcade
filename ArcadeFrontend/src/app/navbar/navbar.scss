@@ -1,0 +1,109 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.app-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: var(--header-height);
+
+  padding: 0 var(--content-padding);
+
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+
+  z-index: var(--z-header);
+  width: 100%;
+}
+
+/* LEFT SIDE */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.brand {
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+
+  color: var(--primary);
+
+  text-decoration: none;
+}
+
+/* NAV LINKS */
+.nav-links {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+
+  padding: var(--space-2) var(--space-3);
+
+  border-radius: var(--radius-md);
+
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.nav-links a:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.nav-links a.active {
+  color: var(--primary);
+  background: rgba(124, 77, 255, 0.12);
+}
+
+/* RIGHT SIDE */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* clickable action wrapper */
+.nav-action {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+
+  padding: var(--space-2) var(--space-3);
+
+  border: none;
+  background: transparent;
+
+  color: var(--text-secondary);
+
+  border-radius: var(--radius-md);
+
+  cursor: pointer;
+
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.nav-action:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+/* Theme toggle specific */
+.theme-toggle .label {
+  font-size: var(--font-size-sm);
+}
+
+/* User button */
+.user-button {
+  font-size: var(--font-size-sm);
+}

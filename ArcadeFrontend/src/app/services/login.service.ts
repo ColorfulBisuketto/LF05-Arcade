@@ -37,6 +37,6 @@ export class LoginService {
   }
 
   private initialUser(): string | undefined {
-    return localStorage.getItem('userName') as string | undefined;
+    return sessionStorage.getItem('userName') as string | undefined;
   }
 }

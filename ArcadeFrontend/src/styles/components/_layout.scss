@@ -1,0 +1,106 @@
+/* ==========================================================================
+   APP SHELL (GLOBAL LAYOUT WRAPPER)
+   ========================================================================== */
+
+.app-shell {
+  display: grid;
+
+  grid-template-rows: var(--header-height) 1fr;
+  grid-template-columns: auto 1fr;
+
+  grid-template-areas:
+    "header header"
+    "sidebar content";
+
+  height: 100dvh;
+  width: 100%;
+
+  background: var(--bg);
+  color: var(--text-primary);
+}
+
+/* Optional layout variants */
+.app-shell--collapsed {
+  grid-template-columns: 72px 1fr;
+}
+
+/* ==========================================================================
+   APP CONTENT AREA
+   ========================================================================== */
+
+.app-content {
+  grid-area: content;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: var(--content-padding);
+
+  max-width: var(--content-max-width);
+  width: 100%;
+
+  margin: 0 auto;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  //background: var(--bg);
+  background: linear-gradient(
+    180deg,
+    var(--bg) 0%,
+    var(--surface) 100%
+  );
+
+  /* smooth scrolling feel */
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+
+/* Optional: content spacing helper */
+.app-content--centered {
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==========================================================================
+   HEADER SLOT (if you use it inside shell)
+   ========================================================================== */
+
+.app-header {
+  grid-area: header;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: var(--header-height);
+
+  padding: 0 var(--content-padding);
+
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+
+  z-index: var(--z-header);
+}
+
+/* ==========================================================================
+   SIDEBAR SLOT (optional but typical with PrimeNG menus)
+   ========================================================================== */
+
+.app-sidebar {
+  grid-area: sidebar;
+
+  width: 280px;
+
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+
+  overflow-y: auto;
+
+  z-index: var(--z-sidebar);
+}
+
+/* collapsed sidebar */
+.app-shell--collapsed .app-sidebar {
+  width: 72px;
+}
