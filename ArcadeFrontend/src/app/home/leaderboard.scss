@@ -14,10 +14,6 @@
   height: fit-content;
 }
 
-/* ==========================================================================
-   TOP 3 (SMALLER, INLINE STRIP)
-   ========================================================================== */
-
 .top3 {
   display: flex;
   justify-content: center;
@@ -74,10 +70,7 @@
 .second .rank { color: silver; }
 .third .rank { color: #cd7f32; }
 
-/* ==========================================================================
-   PRIME TABLE OVERRIDES
-   ========================================================================== */
-
+/* prime table overrides */
 :host ::ng-deep .p-datatable {
   border-radius: var(--radius-lg);
   overflow: hidden;

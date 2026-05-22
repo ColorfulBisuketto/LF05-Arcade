@@ -21,16 +21,7 @@ export class GameStoreService {
   private http = inject(HttpClient);
   private loginService = inject(LoginService);
   private readonly API = '/api/game';
-
-  // ==========================================================================
-  // STATE
-  // ==========================================================================
-
   private readonly _leaderboard = signal<ScoreEntry[]>([]);
-
-  // ==========================================================================
-  // READONLY SELECTORS
-  // ==========================================================================
 
   readonly leaderboard = this._leaderboard.asReadonly();
 
@@ -40,10 +31,6 @@ export class GameStoreService {
       .slice(0, 3)
   );
 
-  // ==========================================================================
-  // INITIAL LOAD
-  // ==========================================================================
-
   async loadLeaderboard(): Promise<void> {
     const data = await firstValueFrom(
       this.http.get<LeaderBoardResponse>(`${this.API}/leaderboard`)
@@ -51,14 +38,6 @@ export class GameStoreService {
 
     this._leaderboard.set(data.scores ?? []);
   }
-
-  // ==========================================================================
-  // USER ACTIONS
-  // ==========================================================================
-
-  // ==========================================================================
-  // SCORE SUBMISSION
-  // ==========================================================================
 
   async submitScore(score: number): Promise<void> {
     if (!this.loginService.isUserSet()) return;

@@ -8,11 +8,13 @@ from models import db, ScoreEntry
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///game.db"
 
+"""Initialise the db and generate all the internal sql commands."""
 def init_db(_app):
     db.init_app(_app)
     with _app.app_context():
         db.create_all()
 
+"""Submit a score to be saved in the db"""
 @app.post("/api/game/submit")
 def submit_score():
     data = request.get_json()
@@ -37,22 +39,26 @@ def submit_score():
         "status": "ok"
     })
 
+"""Get a list of the 1000 best highscores"""
 @app.get("/api/game/leaderboard")
 def get_leaderboard():
-    entries = db.session.scalars(db.select(ScoreEntry).order_by(ScoreEntry.score.desc())).all()
+    entries = db.session.scalars(db.select(ScoreEntry).order_by(ScoreEntry.score.desc())).fetchmany(1000)
+
     scores = []
     for entry in entries:
-        score_dict = entry.to_dict()
+        score_dict = entry.to_dict() # Convert the bd entries to the needed response objects
         scores.append(score_dict)
 
     return jsonify({
         "scores": scores
     })
 
+"""Clear the leaderboard"""
 @app.delete("/api/game/leaderboard")
 def clear_leaderboard():
     db.session.execute(db.delete(ScoreEntry))
     db.session.commit()
+
     return jsonify({
         "status": "ok"
     })
@@ -62,5 +68,5 @@ if __name__ == "__main__":
     app.run(
         host="localhost",
         port=5000,
-        debug=True
+        debug=False
     )

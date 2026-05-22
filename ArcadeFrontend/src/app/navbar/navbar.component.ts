@@ -18,39 +18,23 @@ import { LoginService } from '../services/login.service';
   ],
   template: `
     <header class="app-navbar">
-
-      <!-- LEFT: Brand + Navigation -->
       <div class="nav-left">
-        <a routerLink="/" class="brand">
-          PurpleApp
-        </a>
+        <a routerLink="/" class="brand">PurpleApp</a>
 
         <nav class="nav-links">
-          <a routerLink="/" routerLinkActive="active">
-            Home
-          </a>
-
-          <a routerLink="/clicker" routerLinkActive="active">
-            Clicker
-          </a>
-
-          <a routerLink="/login" routerLinkActive="active">
-            Login
-          </a>
+          <a routerLink="/" routerLinkActive="active">Home</a>
+          <a routerLink="/clicker" routerLinkActive="active">Clicker</a>
+          <a routerLink="/login" routerLinkActive="active">Login</a>
         </nav>
       </div>
 
-      <!-- RIGHT: Actions -->
       <div class="nav-right">
-
-        <!-- Theme toggle -->
         <button class="nav-action theme-toggle" type="button">
           <span class="label">Dark</span>
 
           <p-toggleswitch
             [ngModel]="themeService.theme() === 'dark'"
-            (ngModelChange)="themeService.toggle()"
-          />
+            (ngModelChange)="themeService.toggle()"/>
         </button>
 
         <a routerLink="/login" routerLinkActive="active" class="nav-action user-button">
@@ -66,6 +50,6 @@ import { LoginService } from '../services/login.service';
   styleUrl: './navbar.scss',
 })
 export class NavbarComponent {
-  readonly themeService = inject(ThemeService);
-  readonly loginService = inject(LoginService);
+  protected themeService = inject(ThemeService);
+  protected loginService = inject(LoginService);
 }
